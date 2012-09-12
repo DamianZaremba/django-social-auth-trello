@@ -28,7 +28,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-social-auth-trello',
-    version='1.0.1',
+    version='1.0.2',
     author='Damian Zaremba',
     author_email='damian@damianzaremba.co.uk',
     url='https://github.com/DamianZaremba/django-social-auth-trello',
