@@ -7,20 +7,9 @@ authenticates against Trello.
 from django.utils import simplejson
 from django.conf import settings
 
-from oauth2 import Token
-from urllib import urlencode
-from urllib2 import urlopen
-
-try:
-    from urlparse import parse_qs
-except ImportError:
-    # The dark ages
-    from cgi import parse_qs
-
 from social_auth.backends import ConsumerBasedOAuth, OAuthBackend, USERNAME
-from social_auth.backends.exceptions import AuthCanceled
-
 API_SERVER = 'trello.com'
+
 
 class TrelloBackend(OAuthBackend):
     '''Trello authentication backend'''
