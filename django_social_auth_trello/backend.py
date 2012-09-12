@@ -38,9 +38,13 @@ class TrelloBackend(OAuthBackend):
             first_name = response['fullName']
             last_name = ''
 
+        if 'email' not in response:
+            # Not present for some accounts
+            response['email'] = ''
+
         return {USERNAME: response['username'],
-                'email': '',
-                'fullname': ['fullName'],
+                'email': response['email'],
+                'fullname': response['fullName'],
                 'first_name': first_name,
                 'last_name': last_name}
 
@@ -60,7 +64,8 @@ class TrelloAuth(ConsumerBasedOAuth):
     def user_data(self, access_token, *args, **kwargs):
         '''Return user data from trello'''
         url = 'https://%s/1/members/me' % API_SERVER
-        request = self.oauth_request(access_token, url)
+        data = {'fields': 'email,fullName,username'}
+        request = self.oauth_request(access_token, url, data)
         response = self.fetch_response(request)
 
         try:
