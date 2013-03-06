@@ -31,7 +31,7 @@ class TrelloBackend(OAuthBackend):
             # Not present for some accounts
             response['email'] = ''
 
-        return {USERNAME: response['username'],
+        return {'username': response['username'],
                 'email': response['email'],
                 'fullname': response['fullName'],
                 'first_name': first_name,
